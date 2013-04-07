@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import datetime
 import time
 
-numdays = 50
+numdays = 365
 
 formattedDates = []
 
@@ -18,47 +18,56 @@ for entry in dateList:
 
 urlprefix = 'https://fms.treas.gov/fmsweb/viewDTSFiles?dir=a&fname='
 urlpostfix = '00.txt'
-opBudget = []
+Budget = []
+
+f = open('withdrawal.txt', 'r')
+categories = f.readlines()
+
+f.close()
+fileposition = 0
 
 for date in formattedDates:
 
     text = urlopen(urlprefix + date[1] + urlpostfix).readlines()
 
+    i = 0
     for line in text:
-        x = re.search(r'Total Operating Balance', line)
-        if x:
-            m = re.search("\d", line)
-            if m:
-                num = re.findall(r'[0-9,]+', line[m.start():])
-                integer = re.sub(r'[^0-9]', "", num[0])
-                result = [int(integer), date[0]]
-                opBudget.append(result)
-                time.sleep(0.5)
-                break           
-            else:
-                "This shouldn't ever happen"
-                      
-print "total operating budget"
-y = [value for (value, date) in opBudget]
-x = [date for (value, date) in opBudget]
-datetick = []
+        fileposition = re.search(r'Commodity Credit Corporation programs', line)
+        i += 1
+        if fileposition:
+            break
 
-i = 1
+    for line in text[i:]:
+        fileposition = re.search(r'Commodity Credit Corporation programs', line)
+        i += 1
+        if fileposition:
+            break
 
-for date in x:
-    if i % 10 == 0:
-        datetick.append(date)
-    i +=  1
-print datetick
+    breaker = 0
+    for line in text[i-1:]:
+        for entry in categories:
+            entry = entry.rstrip("\n")
+            x = re.search(r'%s' %entry, line)
+            if x:
+                m = re.search("\d", line)
+                if m:
+                    num = re.findall(r'[0-9,]+', line[m.start():])
+                    integer = re.sub(r'[^0-9]', "", num[0])
+                    result = ["\"" + entry + "\"", int(integer), date[1]]
+                    Budget.append(result)
+                    if entry == "Transfers to Depositaries":
+                        breaker = 1
+                    break           
+                else:
+                    "This shouldn't ever happen"
+        if breaker == 1:
+            time.sleep(0.5)
+            break
 
-fig = plt.figure()
-
-graph = fig.add_subplot(111)
-
-graph.set_xticks(datetick)
-
-# Plot the data as a red line with round markers
-graph.plot(x,y,'r-o')
-
-plt.show()
+f = open("withdrawals.csv", "w")
+f.write("Name of Account, Dollar Value in Millions, Date (yymmdd)\n")
+for entry in Budget:
+    outputfeed = entry[0] + "," + str(entry[1]) + "," + str(entry[2]) + "\n"
+    f.write(outputfeed)
+f.close()
 

@@ -12,7 +12,7 @@ for line in text:
     if x:
         go += 1
     if go == 2:
-        category = (re.findall(r'[a-zA-Z (),.&-]+[^0-9]', line))[0]
+        category = (re.findall(r'[a-zA-Z ,.]+[^0-9]', line))[0]
         category = re.sub(r' [ ]+', "", category)
         category = re.sub(r'$', "", category)
         f.write(category + "\n")
