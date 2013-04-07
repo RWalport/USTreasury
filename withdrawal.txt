@@ -1,0 +1,44 @@
+Commodity Credit Corporation programs
+Defense Vendor Payments (EFT)
+Education Department programs
+Energy Department programs
+Federal Employees Insurance Payments
+Fed. Highway Administration programs
+Federal Salaries (EFT)
+Food and Nutrition Service (misc)
+GSA programs
+Health and Human Services Grants (misc)
+Housing and Urban Development programs
+Interest on Treasury Securities
+IRS Tax Refunds Business (EFT)
+IRS Tax Refunds Individual (EFT)
+Justice Department programs
+Labor Dept. prgms (excl. unemployment)
+Medicaid
+Medicare
+NASA programs
+Postal Service Money Orders and Other
+Public Debt Cash Redemp. (Table III-B)
+Social Security Benefits (EFT)
+Supple. Nutrition Assist. Program (SNAP)
+Temporary Assistance for Needy
+Families (HHS)
+Transportation Security Admin. (DHS)
+Unemployment Insurance Benefits
+Veterans Affairs programs
+Other Withdrawals:
+Civil Service Retirement (EFT)
+Emergency Prep & Response (DHS)
+Federal Crop Ins. Corp.
+Federal Financing Bank
+International Monetary Fund
+Military Active Duty Pay (EFT)
+Military Retirement (EFT)
+Pmt. to Corp. for Pub. Broadcasting
+Railroad Retirement (EFT)
+Supple. Security Income Benefits (EFT)
+Treasury Department programs
+Veterans Benefits (EFT)
+Unclassified
+Total, Other Withdrawals
+Transfers to Depositaries
